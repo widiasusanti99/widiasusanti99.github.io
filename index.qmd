@@ -1,0 +1,160 @@
+---
+title: "Pengaruh Nilai Export Terhadap GDP di Indonesia 2013-2022 "
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Widia Susanti"
+date: January 13,2024
+number-sections: true
+format:
+  html: default
+  docx: default
+---
+
+![](images/poltekapp-01.jpg)
+
+## Pendahuluan
+
+### Latar belakang
+
+Pertumbuhan ekonomi itu menunjukan bagaimana perekonomian dapat menghasilkan pendapatan pada waktu periode tertentu juga akan menyebabkan perkembangn dunia yang dimana jika Perkembangan dunia semakin pesat akan menjadikan kebutuhan barang dan jasa semakin meningkat. Hal ini menyebabkan transaksi internasional terjadi ketika negara memiliki kelebihan produksi dalam negeri dan melakukan ekspor ke negara lain, juga akan berdampak pada pertumbuhan Gross Domestic Product (GDP).
+
+Ekspor yang kuat dapat menarik investasi asing langsung ke negara tersebut. Investasi ini dapat memberikan kontribusi tambahan terhadap perkekonomian termasuk produksi dan pekerjaan. Dengan kata lain ekspor dapat membantu meningkatkan GDP melalui peningkatan aktivitas ekonomi.Penelitian ini bertujuan untuk mengetahui apakah pada tahun 2013-2022 hasil perhitungan niai ekspor masih dapat mempengaruhi pertumbuhan ekonomi dan mendapatkan hasil yang signifikan.
+
+### Ruang lingkup
+
+Dalam penelitian ini penulis mengambil objek penelitian dari World Development Indicators. Database dan UN Comtrade Database. Dimana dalam pengambilan data ini mengambil 2 Variabel antara lain nilai ekspor Indonesia dan nilai Gross Domestic Product (GDP) Data yang digunakan adalah data yang bersifat time series yaitu dalam kurun waktu 2013-2022 dengan satuan USD untuk memudahkan penyetaraan mata uang secara internasional.
+
+### Rumusan masalah
+
+Berdasarkan uraian latar belakang diatas maka yang menjadi masalah pokok pada penelitian ini adalah:
+
+1.  Apakah ekspor dapat berpengaruh terhadap GDP Indonesia?
+2.  Bagaimana hubungan ekspor terhadap GDP Indonesia?
+
+### Tujuan dan manfaat penelitian
+
+Tujuan dari penelitian ini adalah untuk menilai sejauh mana nilai ekspor memengaruhi GDP Indonesia selama periode 2013-2022. Selain itu, untuk menentukan apakah ada korelasi positif antara ekspor dan pertumbuhan ekonomi. Manfaat yang diharapkan dari hasil penelitian ini adalah Memberikan wawasan kepada pembaca tentang sejauh mana kebijakan ekspor dapat menjadi penyebab bagi pertumbuhan ekonomi Indonesia.
+
+### Package
+
+Packages yang digunakan pada penelitian ini antara lain sebagai berikut:
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+## Studi pustaka
+
+1.  Ekspor adalah kegiatan menjual barang/jasa dari daerah pabean sesuai peraturan dan undang-undang yang berlaku. Daerah pabean yang dimaksud ialah seluruh wilayah nasional dari suatu negara , diamana dipungut bea masuk dan bea keluar untuk semua barang-barang yang melewati wilayah menurut Astuti Purnawati (2013) dan Sri Fatmawati (2013). Menurut Amir M.S (2004), kegiatan ekspor dilakukan oleh suatu negara dengan tujuan antara lain:
+
+```{=html}
+<!-- -->
+```
+a.  membuka pasar baru diluar negeri sebagai perluasan pasar domestik, sehingga dapat menciptakan ekonomi yang kondusif secara nasional maupun global.
+b.  membiasakan bersaing dalam pasar internasional sehingga terlatih dalam persaingan yang ketat.
+
+```{=html}
+<!-- -->
+```
+2.  Menurut Prasetyo (Di kutip dari Basuki Pujoalwanto:2013), Pertumbuhan ekonomi adalah pertambahan output atau pendapatan nasional keseluruhan dalam kurun waktu tertentu. Perekonomian di suatu negara dikatakan mengalami pertumuhan rill terhadap penggunaan faktor produksi pada periode tertentu lebih besar dari periode sebelumnya.
+
+## Metode penelitian
+
+### Data
+
+Berikut adalah data yang digunakan sebagai penelitian, data dibawah ini meruoakan data nilai ekspor, dan GDP dengan satuan USD.
+
+| Tahun | ekspor(X)       | GDP(Y)      |
+|-------|-----------------|-------------|
+| 2013  | 182.551.754.383 | 9,12524E+11 |
+| 2014  | 176,036,194,332 | 8,90815E+11 |
+| 2015  | 150,366,281,305 | 8,60854E+11 |
+| 2016  | 144,489,796,418 | 9,31877E+11 |
+| 2017  | 168,827,554,042 | 1,01562E+12 |
+| 2018  | 180,215,034,094 | 1,04227E+12 |
+| 2019  | 167,682,995,133 | 1,1191E+12  |
+| 2020  | 163,191,837,310 | 1,05905E+12 |
+| 2021  | 231,522,458,128 | 1,18651E+12 |
+| 2022  | 291,979,090,608 | 1,3191E+12  |
+
+penelitian ini menggunakan data sekunder dengan bentuk time series 2013-2022, data yang dipakai diolah dan bersumber dari UN Comtrade Database.
+
+```{r}
+setwd('C:/UAS Metopel')
+dat<-read_excel('UAS Metopel.xlsx')
+library(readxl)
+reg1<-lm(Y~X,data=dat)
+dat$u<-resid(reg1)
+plot(dat$X,dat$u,xlab="ekspor",ylab="eror")
+abline(h=0)
+```
+
+Plot pengaruh Eror terhadap Nilai Ekspor
+
+```{r}
+library(readxl)
+dat$u<-resid(reg1)
+plot(dat$Y,dat$u,xlab="GDP",ylab="eror")
+abline(h=0)
+```
+
+Plot pengaruh eror terhadap GDP
+
+### Metode analisis
+
+Teknik analisis yang digunakan dalam penelitian ini adalah teknik kuantitatif. Metode yang dipilih adalah regresi univariat atau Ordinary Least Square (OLS) dengan 1 variabel independen. Penelitian ini bermaksud mencari hubungan antara nilai ekspor di Indonesia dan GDP Indonesia. Spesifikasi yang dilakukan adalah:
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+\mu_t
+$$ di mana $y_t$ adalah GDP Idonesia dan $x_t$ adalah Nilai Ekspor.
+
+## Pembahasan
+
+### Pembahasan masalah
+
+| Variabel           | Coefficient | Std. Error | t value | Prob (.) |
+|--------------------|-------------|------------|---------|----------|
+| Intercept          | 5.319e+11   | 1.243e+11  | 4.280   | 0.00269  |
+| X                  | 2.703e+00   | 6.527e-01  | 4.141   | 0.0032   |
+| R Squared          | 0.6819      |            |         |          |
+| Adjusted R-squared | 0.6421      |            |         |          |
+| F-statistic        | 17.15       |            |         |          |
+| Prob(F-statistic)  | 0.003249    |            |         |          |
+
+Hasil regresi yang telah didapat dimasukan ke dalam rumus persamaan yang ada sehingga menjadi:
+
+$$
+Y=5.319 + 2.703X
+$$
+
+Peran dari ekspor dalam pertumbuhan ekonomi berperan penting dalam meningkatkan Growth Domestic Product (GDP) dikarenakan nilai variabel X yang menunjukkan positif, meskipun demikian, hasil regresi ini menunjukkan bahwa pengaruh nilai ekspor tidak sepenuhnya mempengaruhi GDP di indonesia.ada beberapa faktor lain yang menyebabkan peningkatan GDP Indonesia. dapat diasumsikan bahwa setiap kenaikan ekspor 1, maka GDP akan meningkat sebesar 2.703.
+
+Nilai Adjusted R-squared sebesar 0.6421 menunjukan bahwa variabel independen di dalam penelitian dapat menjelaskan variasi variabel dependen sebesar 64,21 persen. F-statistic dengan nilai 17.15 menjelaskan bahwa variabel independen dalam jangka panjang seperti ekspor memiliki pengaruh signifikan terhadap pertumbuhan ekonomi atau GDP Indonesia.
+
+### Analisis masalah
+
+Hasil regresinya adalah
+
+```{r}
+setwd('C:/UAS Metopel')
+dat<-read_excel('UAS Metopel.xlsx')
+library(readxl)
+reg1<-lm(Y~X,data=dat)
+summary(reg1)
+```
+
+dilihat dari tabel di atas menujukan ketika kenaikan nilai ekspor dengan diasumsikan 1 nilainya, maka dapat meningkatkan GDP sebesar 2.703.
+
+## Kesimpulan
+
+Setelah dilakukannya penelitian melalui regresi dapat disimpulkan antara lain:
+
+1.  Nilai ekspor berpengaruh terhadap GDP Indonesia namun tidak sepenuhnya mempengaruhi peningkatan GDP masih terdapat beberapa faktor lain yang mempengaruhi peningkatan GDP.
+
+2.  Nilai ekspor memiliki hubungan yang Positif terhadap GDP Indonesia hal ini menunjukan nilai ekspor memberikan kontribusi yang signifikan terhadap pertumbuhan ekonomi, hal ini juga menunjukan bahwa semakin banyak yang di ekspor maka arus modal yang masuk ke dalam negeri juga dalam jumlah yang banyak.
+
+## Referensi
+
+Santoso, F., & Artha, B. (2021). Pengaruh Ekspor Terhadap Gross Domestic Product: Jurnal Ekonomi Manajemen Dan Sosial, 4(2), Article 2. https://doi.org/10.56071/jemes.v4i2.248
+
+Arti Ekspor Menurut Ahli, Manfaat, dan Jenisnya. (n.d.). kumparan. Retrieved January 13, 2024, from https://kumparan.com/pengertian-dan-istilah/arti-ekspor-menurut-ahli-manfaat-dan-jenisnya-21Me9AvnfkT
